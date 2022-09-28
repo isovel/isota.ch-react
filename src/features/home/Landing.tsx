@@ -5,13 +5,9 @@ const randomBlurb = () => {
     'Certified Idiot.',
     'Avid Procrastinator.',
     'Your Worst Nightmare.',
-    'Dad Joke Connoisseur.',
-    'Master of the Obvious.',
     'Superior Being.',
     'Not a Robot.',
     'Proud Owner of a 2008 Toyota Corolla.',
-    'Hoarder of All Things Useless.',
-    'TypeScript Evangelist.',
   ]
   return blurbList[Math.floor(Math.random() * blurbList.length)]
 }

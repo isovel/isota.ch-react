@@ -34,7 +34,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
-  background-image: url('https://cdn.discordapp.com/attachments/831993636497391647/1024135990337605632/radiowaves_ver3_16x9.webp');
+  background-image: url('/src/assets/radiowaves_ver3.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

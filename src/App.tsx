@@ -1,9 +1,7 @@
 import {
   BrowserRouter as Router,
-  Navigate,
   Route,
   Routes,
-  useLocation,
 } from 'react-router-dom'
 import Layout from './components/core/Layout'
 import ErrorBoundary from './components/ErrorBoundary'
