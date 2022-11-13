@@ -1,4 +1,5 @@
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes } from 'styled-components'
+import useTitle from '../../hooks/useTitle'
 
 const randomBlurb = () => {
   const blurbList = [
@@ -13,9 +14,14 @@ const randomBlurb = () => {
 }
 
 const Landing = () => {
+  useTitle()
+
   return (
     <Container>
-      <CLIHeader>&gt; toast<Cursor /></CLIHeader>
+      <CLIHeader>
+        &gt; toast
+        <Cursor />
+      </CLIHeader>
       <Divider />
       <BlurbList>
         <li>Software Developer.</li>
@@ -34,7 +40,6 @@ const BlurbList = styled.ul`
 
   li {
     margin: 1em 0;
-    text-indent: 0.45em;
   }
 `
 

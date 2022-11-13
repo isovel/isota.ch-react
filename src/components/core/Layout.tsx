@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import ErrorBoundary from '../ErrorBoundary'
@@ -15,12 +14,12 @@ const Layout = () => {
       </Section>
       <Footer>
         &copy; isota.ch {new Date().getFullYear()}
-        {/* <Divider />
+        <Divider />
         {location.pathname === '/' ? (
           <FooterLink to={'/projects'}>projects</FooterLink>
         ) : (
           <FooterLink to={'/'}>home</FooterLink>
-        )} */}
+        )}
       </Footer>
     </>
   )
@@ -31,8 +30,9 @@ const Section = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   width: 100vw;
+  min-height: 100vh;
+  padding-bottom: 20px;
 `
 
 const FooterLink = styled(Link)`
@@ -66,6 +66,7 @@ const Footer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 `
 
 export default Layout

@@ -1,5 +1,7 @@
 :root {
-  font-family: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
+  font-family: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console',
+    'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+    'Courier New', monospace, serif;
   font-size: 14px;
   font-weight: 400;
 
@@ -20,11 +22,14 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: inherit;
   text-decoration: inherit;
+  user-select: none;
 }
-a:hover {
-  color: #535bf2;
+
+html {
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
@@ -33,6 +38,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  overflow: hidden;
+  overflow-y: auto;
 
   background-image: url('/src/assets/radiowaves_ver3.webp');
   background-repeat: no-repeat;
@@ -55,11 +63,11 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  user-select: none;
 }
 button:hover {
   border-color: #646cff;
 }
-button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
@@ -74,5 +82,11 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media only screen and (max-width: 512px) {
+  ::webkit-scrollbar {
+    display: none;
   }
 }

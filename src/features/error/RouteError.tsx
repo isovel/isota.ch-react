@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 export enum HTTPError {
   Unauthorized = 401,
   Forbidden = 403,
