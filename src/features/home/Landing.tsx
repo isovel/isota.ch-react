@@ -1,5 +1,7 @@
-import styled, { keyframes } from 'styled-components'
+import { useState } from 'react'
+import styled from 'styled-components'
 import useTitle from '../../hooks/useTitle'
+import { CLI, CLIText } from './CLI'
 
 const randomBlurb = () => {
   const blurbList = [
@@ -8,20 +10,20 @@ const randomBlurb = () => {
     'Your Worst Nightmare.',
     'Superior Being.',
     'Not a Robot.',
-    'Proud Owner of a 2008 Toyota Corolla.',
+    // 'Proud Owner of a 2008 Toyota Corolla.',
   ]
   return blurbList[Math.floor(Math.random() * blurbList.length)]
 }
 
 const Landing = () => {
   useTitle()
+  const [isActivated, setIsActivated] = useState(false)
 
-  return (
+  return isActivated ? (
+    <CLI />
+  ) : (
     <Container>
-      <CLIHeader>
-        &gt; toast
-        <Cursor />
-      </CLIHeader>
+      <CLIText onActivate={() => setIsActivated(true)} />
       <Divider />
       <BlurbList>
         <li>Software Developer.</li>
@@ -47,36 +49,6 @@ const Divider = styled.span`
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, #000000, #444444, #000000);
-`
-
-const cursorAnimation = keyframes`
-  0% {
-    opacity: 0;
-  }
-  49% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  99% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`
-
-const Cursor = styled.span`
-  margin-left: 1px;
-  padding-right: calc(0.5em - 1px);
-  opacity: 0;
-  border-left: #777 solid 1px;
-  animation: ${cursorAnimation} 1s infinite;
-`
-
-const CLIHeader = styled.h1`
-  text-indent: -1em;
 `
 
 const Container = styled.div`

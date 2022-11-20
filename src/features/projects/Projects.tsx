@@ -19,13 +19,9 @@ type ProjectCategory = {
   itemPropertyOverrides: Partial<Project>
 }
 
-const projects: ProjectCategory[] = (
-  await (
-    await fetch(
-      'https://cors-proxy.toast.workers.dev/?https://isota.ch/projects/projects_v2.json',
-    )
-  ).json()
-).categories
+const projects: ProjectCategory[] = await (
+  await fetch('/api/v1/projects')
+).json()
 
 const Projects = () => {
   return (

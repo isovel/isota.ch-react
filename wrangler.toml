@@ -1,0 +1,7 @@
+name = "isota-ch-react"
+compatibility_date = "2022-11-20"
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "isotach"
+database_id = "776c57c4-08c9-4db8-b994-d2a6c0eda35e"
