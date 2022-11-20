@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import useKeyPress from '../../hooks/useKeypress'
+import useKeyPress from '../../hooks/useKeyPress'
 
 const CLIText = (props: { onActivate: () => void }) => {
   const backspace = useKeyPress('Backspace')
