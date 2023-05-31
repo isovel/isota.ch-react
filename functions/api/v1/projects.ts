@@ -19,6 +19,7 @@ export async function onRequest(context) {
     )
   } catch (error) {
     console.error(error)
+    return new Response('Internal Server Error', { status: 500 })
   }
 
   return new Response(JSON.stringify(categories))
