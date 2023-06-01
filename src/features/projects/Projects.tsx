@@ -4,12 +4,11 @@ import Card from './Card'
 
 type Project = {
   name: string
-  link: string
-  source: string
-  description: string
+  link?: string
+  source?: string
+  description?: string
   tags?: string[]
-  image: string
-  hidden?: boolean
+  image?: string
 }
 
 type ProjectCategory = {
@@ -30,7 +29,6 @@ const Projects = () => {
       {projects.map((category, cIdx) => (
         <Accordian key={cIdx} title={category.label} open>
           {category.items.map((project, pIdx) => {
-            if (project.hidden) return null
             return (
               <Card
                 key={pIdx}
