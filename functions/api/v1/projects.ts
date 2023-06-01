@@ -49,7 +49,7 @@ export async function onRequestGet(context: EventContext<Env, '', Request>) {
 
       // Filter projects by category
       const category_projects = projects.filter(
-        (project) => project.name === raw_category.name,
+        (_, i) => raw_projects[i].category_id === raw_category.id,
       )
 
       // Add projects to category
