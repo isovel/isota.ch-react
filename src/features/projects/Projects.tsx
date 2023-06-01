@@ -18,15 +18,14 @@ type ProjectCategory = {
   itemPropertyOverrides: Partial<Project>
 }
 
-const projects: ProjectCategory[] = await (
-  await fetch('/api/v1/projects')
-).json()
+const { categories }: { categories: ProjectCategory[] } =
+  (await (await fetch('/api/v1/projects')).json()) ?? []
 
 const Projects = () => {
   return (
     <Container>
       <Title>Projects</Title>
-      {projects.map((category, cIdx) => (
+      {categories.map((category, cIdx) => (
         <Accordian key={cIdx} title={category.label} open>
           {category.items.map((project, pIdx) => {
             return (
