@@ -1,4 +1,3 @@
-import type { EventContext } from '@cloudflare/workers-types'
 import type {
   Env,
   Project,
@@ -7,9 +6,8 @@ import type {
   RawProjectCategory,
 } from '../../../src/types'
 
-export async function onRequestGet(context: EventContext<Env, '', Request>) {
-  const { env } = context
-  const { DB } = env
+export const onRequestGet: PagesFunction<Env> = async (context) => {
+  const { DB } = context.env
 
   const category_stmt = DB.prepare(
     `SELECT * FROM project_categories WHERE hidden = 0`,
@@ -59,10 +57,14 @@ export async function onRequestGet(context: EventContext<Env, '', Request>) {
       categories.push(category)
     })
   } catch (error) {
-    return new Response(JSON.stringify({ categories: [], error }), {
-      status: 500,
-    })
+    return Response.json(
+      {
+        categories: [],
+        error: `${error?.cause?.message}`,
+      },
+      { status: 500 },
+    )
   }
 
-  return new Response(JSON.stringify({ categories }), { status: 200 })
+  return Response.json({ categories }, { status: 200 })
 }
