@@ -4,7 +4,7 @@ import { FC, PropsWithChildren, useState } from 'react'
 import styled from 'styled-components'
 
 const Accordian: FC<PropsWithChildren<{ title: string; open?: boolean }>> = (
-  props,
+  props
 ) => {
   const [isOpen, setIsOpen] = useState(props.open || false)
 
@@ -34,6 +34,7 @@ const AccordianContent = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   h2 {
     text-align: left;

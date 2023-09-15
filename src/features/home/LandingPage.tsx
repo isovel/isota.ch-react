@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useTitle from '../../hooks/useTitle'
+import { useUIStore } from '../../store/UIStore'
 import { CLI, CLIText } from './CLI'
 
 const randomBlurb = () => {
@@ -15,12 +16,18 @@ const randomBlurb = () => {
   return blurbList[Math.floor(Math.random() * blurbList.length)]
 }
 
-const Landing = () => {
+const LandingPage = () => {
   useTitle()
+  const { setShowFooter } = useUIStore()
   const [isActivated, setIsActivated] = useState(false)
 
+  useEffect(() => {
+    isActivated && setShowFooter(false)
+    return () => setShowFooter(true)
+  }, [isActivated, setShowFooter])
+
   return isActivated ? (
-    <CLI />
+    <CLI onDeactivate={() => setIsActivated(false)} />
   ) : (
     <Container>
       <CLIText onActivate={() => setIsActivated(true)} />
@@ -48,7 +55,7 @@ const BlurbList = styled.ul`
 const Divider = styled.span`
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, #000000, #444444, #000000);
+  background: ${(props) => props.theme.gradients.landingDivider};
 `
 
 const Container = styled.div`
@@ -59,7 +66,6 @@ const Container = styled.div`
 
   padding: 0 0 2em 0;
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
 
   width: 18%;
@@ -74,4 +80,4 @@ const Container = styled.div`
   }
 `
 
-export default Landing
+export default LandingPage

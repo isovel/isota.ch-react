@@ -35,7 +35,7 @@ export default class ErrorBoundary extends Component<
 // TODO: Add proper error fallback
 const ErrorFallback = (props: ErrorBoundaryProps) => {
   return (
-    <Container>
+    <Container style={props.style}>
       <h1>&gt; System Error &lt;</h1>
       <ReloadButton onClick={() => window.location.reload()}>
         Reload

@@ -16,8 +16,8 @@ const Card = (props: {
     <Container {...linkProps} style={props.style}>
       {props.image && <Image src={props.image} />}
       <CardTextContainer>
-        <h3>{props.title}</h3>
-        {props.description && <p>{props.description}</p>}
+        <CardTitle>{props.title}</CardTitle>
+        {props.description && <CardText>{props.description}</CardText>}
       </CardTextContainer>
       <Tags>
         {props.tags && props.tags.map((tag, idx) => <Tag key={idx}>{tag}</Tag>)}
@@ -26,7 +26,7 @@ const Card = (props: {
   )
 }
 
-const slideIn = keyframes`
+const _slideIn = keyframes`
   from {
     opacity: 0;
     transform: translateX(-100px);
@@ -37,24 +37,31 @@ const slideIn = keyframes`
   }
 `
 
-const Tag = styled.div`
-  background: rgba(100, 100, 255, 0.1);
-  border: 1px solid rgba(100, 100, 255, 0.5);
-  border-radius: 9999px;
-  color: rgba(100, 100, 255, 1);
-  font-size: 0.8em;
-  padding: 0.25em 0.6em;
-  user-select: none;
+const Tag = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: fit-content;
+  padding: 0.25em 0.6em;
+  background: ${(props) => props.theme.colors.iris1};
+  border: 1px solid ${(props) => props.theme.colors.iris6};
+  border-radius: 9999px;
+  color: ${(props) => props.theme.colors.iris9};
+  font-size: 0.8em;
   white-space: nowrap;
+  user-select: none;
+
+  a:hover & {
+    text-decoration-style: none;
+  }
 `
 
 const Tags = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5em;
-  margin-left: auto;
   height: 100%;
+  margin-left: auto;
 `
 
 const Image = styled.div<{ src: string }>`
@@ -65,6 +72,15 @@ const Image = styled.div<{ src: string }>`
   height: 64px;
   border-radius: 8px;
   aspect-ratio: 1;
+`
+
+const CardText = styled.div`
+  color: ${(props) => props.theme.colors.textLight};
+`
+
+const CardTitle = styled.h3`
+  margin: 0;
+  color: ${(props) => props.theme.colors.text};
 `
 
 const CardTextContainer = styled.div`
@@ -83,22 +99,20 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1em;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
   padding: 1em;
-  backdrop-filter: blur(25px);
-  opacity: 0;
-  transform: translateX(-50px);
+  transform: scale(0.98);
+  opacity: 1;
+  background-color: ${(props) => props.theme.colors.backgroundFloating};
+  border: 1px solid ${(props) => props.theme.colors.border};
+  border-radius: 8px;
+  text-decoration: none;
   overflow: hidden;
 
-  animation: ${slideIn} 250ms forwards;
-  animation-timing-function: cubic-bezier(0.7, 0, 0.7, 1.5);
-
-  transition: transform 250ms ease-in-out;
+  transition: transform 150ms ease-in-out;
 
   &:hover {
-    transform: translateX(10px);
+    transform: scale(1);
+    text-decoration: none;
   }
 `
 

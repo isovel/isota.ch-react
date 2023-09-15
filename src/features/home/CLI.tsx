@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react'
+import useTheme from 'hooks/useTheme'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import useKeyPress from '../../hooks/useKeyPress'
+import {
+  Commands,
+  Line,
+  useCommandHandler,
+  useTypeableState,
+} from '../../lib/cli'
 
 const CLIText = (props: { onActivate: () => void }) => {
-  const backspace = useKeyPress('Backspace')
-  const [text, setText] = useState('toast')
+  const text = useTypeableState('isotach', {
+    allowErasing: true,
+    allowTyping: false,
+  })
 
   useEffect(() => {
-    if (backspace) {
-      if (text.length > 1) {
-        setText(text.slice(0, -1))
-      } else {
-        setText('')
-        props.onActivate()
-      }
-    }
-  }, [backspace])
+    text.length === 0 && props.onActivate()
+  }, [props, text])
 
   return (
     <CLIHeader>
@@ -25,25 +26,57 @@ const CLIText = (props: { onActivate: () => void }) => {
   )
 }
 
-const CLI = () => {
-  const [currentLine, setCurrentLine] = useState('')
-  const [history, setHistory] = useState<string[]>([])
-  useKeyPress('', {
-    onKeyDown: (key) => {
-      console.log(key, 'pressed')
-    },
+const CLILine = (props: { line: Line; active?: boolean }) => {
+  const theme = useTheme()
+
+  return (
+    <CLILineContainer $color={props.line.error ? theme.colors.red9 : undefined}>
+      {props.line.showUser && (
+        <CLIUserText>root@{window.location.hostname}</CLIUserText>
+      )}
+      {props.line.content}
+      {props.active && <Cursor />}
+    </CLILineContainer>
+  )
+}
+
+const CLI = (props: { onDeactivate: () => void }) => {
+  const [history, setHistory] = useState<Line[]>([])
+  const ref = useRef<HTMLDivElement>(null)
+  const handleCommand = useCommandHandler(Commands, (line) => {
+    if (line.triggerExit) props.onDeactivate()
+    setHistory((history) => [...history, line])
+  })
+  const currentLine = useTypeableState('', {
+    onSubmit: useCallback(
+      (value: string) => {
+        setHistory((history) => [
+          ...history,
+          { content: value, showUser: true },
+        ])
+        handleCommand(value)
+      },
+      [handleCommand]
+    ),
+  })
+
+  // Prevent scrolling when spacebar is pressed
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key == 'Space' && e.target == ref.current) {
+        e.preventDefault()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   })
 
   return (
-    <CLIContainer>
+    <CLIContainer ref={ref}>
       {history.map((line, i) => (
-        <CLILine key={i}>{line}</CLILine>
+        <CLILine key={i} line={line} />
       ))}
-      <CLILine>
-        {'root@isota.ch:~$'}
-        {currentLine}
-        <Cursor />
-      </CLILine>
+      <CLILine line={{ content: currentLine, showUser: true }} active />
     </CLIContainer>
   )
 }
@@ -72,8 +105,9 @@ const Cursor = styled.span`
   margin-left: 1px;
   padding-right: calc(0.5em - 1px);
   opacity: 0;
-  border-left: #777 solid 1px;
+  border-left: 1px solid ${(props) => props.theme.colors.textLight};
   animation: ${cursorAnimation} 1s infinite;
+  height: 1.2em;
 `
 
 const CLIHeader = styled.h1`
@@ -83,11 +117,29 @@ const CLIHeader = styled.h1`
 const CLIContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  padding: 8px;
+  overflow: hidden auto;
 `
 
-const CLILine = styled.div`
+const CLILineContainer = styled.div<{ $color?: string }>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
+  margin: 0.2em 0;
+  color: ${(props) => props.$color || props.theme.colors.text};
+  white-space: pre-wrap;
+`
+
+const CLIUserText = styled.span`
+  color: ${(props) => props.theme.colors.text};
+
+  &:after {
+    content: ':~$';
+    margin-right: 0.5em;
+  }
 `

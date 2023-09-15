@@ -1,5 +1,5 @@
 name = "isota-ch-react"
-compatibility_date = "2022-11-20"
+compatibility_date = "2023-09-04"
 
 [[ d1_databases ]]
 binding = "DB"
