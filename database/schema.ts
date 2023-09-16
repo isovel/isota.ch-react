@@ -41,6 +41,32 @@ const schema: DBSchema = [
     ],
   },
   {
+    name: 'project_tags',
+    columns: [
+      {
+        name: 'key',
+        type: 'TEXT',
+        nullable: true,
+        default: null,
+        primary_key: true,
+      },
+      {
+        name: 'display_name',
+        type: 'TEXT',
+        nullable: true,
+        default: null,
+        primary_key: false,
+      },
+      {
+        name: 'color',
+        type: 'TEXT',
+        nullable: true,
+        default: null,
+        primary_key: false,
+      },
+    ],
+  },
+  {
     name: 'projects',
     columns: [
       {

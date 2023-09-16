@@ -45,6 +45,6 @@ export type Project = {
 export type ProjectCategory = {
   label: string
   items: Project[]
-  itemPropertyDefaults: Partial<Project>
-  itemPropertyOverrides: Partial<Project>
+  itemPropertyDefaults: Omit<Project, 'name'>
+  itemPropertyOverrides: Omit<Project, 'name'>
 }

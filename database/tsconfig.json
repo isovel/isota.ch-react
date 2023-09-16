@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "moduleResolution": "node",
     "lib": ["esnext"],
-    "types": ["@types/better-sqlite3"],
+    "types": ["@types/better-sqlite3", "@types/node"],
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,

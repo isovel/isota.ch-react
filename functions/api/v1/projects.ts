@@ -70,12 +70,12 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       // Add category to categories
       categories.push(category)
     })
-  } catch (error) {
+  } catch (e: unknown) {
+    console.error(e)
     return Response.json(
       {
         categories: [],
-        // @ts-expect-error - any database error will have a cause
-        error: `${error?.cause?.message}`,
+        error: 'An error occurred while fetching projects.',
       },
       { status: 500 }
     )

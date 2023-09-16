@@ -4,10 +4,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "export NO_D1_WARNING=true && wrangler pages dev --d1=DB -- vite",
+    "dev": "export NO_D1_WARNING=true && wrangler pages dev -- vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "migrate-db": "ts-node --esm ./database/migrate.ts"
+    "populate-db": "ts-node --esm ./database/populate.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
