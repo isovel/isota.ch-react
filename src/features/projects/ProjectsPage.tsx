@@ -1,24 +1,18 @@
 import styled from 'styled-components'
-import { Colors } from 'themes'
+import { ProjectTag } from 'types'
 import Accordian from './Accordian'
 import Card from './Card'
 
-export type Tag = {
-  key: string
-  displayName: string
-  color: keyof typeof Colors
-}
-
-export type Project = {
+type Project = {
   name: string
   link?: string
   source?: string
   description?: string
-  tags?: Tag[]
+  tags?: ProjectTag[]
   image?: string
 }
 
-export type ProjectCategory = {
+type ProjectCategory = {
   label: string
   items: Project[]
   itemPropertyDefaults: Partial<Project>

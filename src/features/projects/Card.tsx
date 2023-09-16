@@ -1,16 +1,17 @@
-import { Tag } from 'features/projects/ProjectsPage'
 import { CSSProperties } from 'react'
 import styled from 'styled-components'
 import { Colors } from 'themes'
+import { ProjectTag } from 'types'
 
-const getTagColor = (tag: Tag): Colors => Colors[tag.color]
+const getTagColor = (tag: ProjectTag): Colors =>
+  Colors[tag.color as keyof typeof Colors]
 
 const Card = (props: {
   image?: string
   title: string
   description?: string
   href?: string
-  tags?: Tag[]
+  tags?: ProjectTag[]
   style: CSSProperties
 }) => {
   const linkProps = props.href
