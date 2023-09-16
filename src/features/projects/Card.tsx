@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import { Colors } from 'themes'
 import { ProjectTag } from 'types'
 
-const getTagColor = (tag: ProjectTag): Colors =>
-  Colors[tag.color as keyof typeof Colors]
-
 const Card = (props: {
   image?: string
   title: string
@@ -27,7 +24,7 @@ const Card = (props: {
       <CardTags>
         {props.tags &&
           props.tags.map((tag, idx) => (
-            <CardTag key={idx} $color={getTagColor(tag)}>
+            <CardTag key={idx} $color={tag.color as Colors}>
               {tag.displayName}
             </CardTag>
           ))}
