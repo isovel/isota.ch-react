@@ -1,6 +1,6 @@
 import sqlite from 'better-sqlite3'
-import { project_categories, project_tags, projects } from './raw.json'
-import schema from './schema.js'
+import { project_categories, project_tags, projects } from './data.ts'
+import schema from './schema.ts'
 
 const db = sqlite(
   '.wrangler/state/v3/d1/776c57c4-08c9-4db8-b994-d2a6c0eda35e/db.sqlite'

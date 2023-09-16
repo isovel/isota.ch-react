@@ -6,9 +6,10 @@
     "lib": ["esnext"],
     "types": ["@types/better-sqlite3", "@types/node"],
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "noEmit": true,
     "strict": true
   }
 }
