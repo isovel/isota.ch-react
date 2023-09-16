@@ -1,13 +1,10 @@
 import sqlite from 'better-sqlite3'
+import { project_categories, project_tags, projects } from './raw.json'
 import schema from './schema.js'
 
 const db = sqlite(
   '.wrangler/state/v3/d1/776c57c4-08c9-4db8-b994-d2a6c0eda35e/db.sqlite'
 )
-
-const { project_categories, project_tags, projects } =
-  await // @ts-expect-error - fetch exists in the global scope for node 18 and up
-  (await fetch('https://isota-ch.pages.dev/api/v1/dumpdb')).json()
 
 const populate = () => {
   for (const table of schema) {

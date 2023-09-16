@@ -1,0 +1,149 @@
+{
+  "project_categories": [
+    {
+      "id": "cat_0b661c36-8717-4a67-9d0a-f836a7dd42b4",
+      "name": "Standalone Projects",
+      "hidden": 0
+    },
+    {
+      "id": "cat_af00f784-7427-4295-a674-33446f01fc7d",
+      "name": "Spigot Plugins",
+      "hidden": 0
+    },
+    {
+      "id": "cat_f63d4210-ffa4-409e-8d70-74a2a7060de7",
+      "name": "Discord Bots",
+      "hidden": 0
+    },
+    {
+      "id": "cat_3e014eca-700e-4ebb-b2a7-bb5ddc39eb58",
+      "name": "Discord Plugins",
+      "hidden": 0
+    }
+  ],
+  "project_tags": [
+    { "key": "state_wip", "display_name": "WIP", "color": "gray" },
+    { "key": "state_archived", "display_name": "Archived", "color": "gray" },
+    { "key": "lang_ts", "display_name": "TypeScript", "color": "blue" },
+    { "key": "lang_js", "display_name": "JavaScript", "color": "yellow" },
+    { "key": "lang_java", "display_name": "Java", "color": "red" },
+    { "key": "lang_lua", "display_name": "Lua", "color": "iris" },
+    { "key": "lang_rs", "display_name": "Rust", "color": "brown" },
+    { "key": "lang_c", "display_name": "C", "color": "blue" },
+    { "key": "lang_cpp", "display_name": "C++", "color": "blue" },
+    { "key": "lang_cs", "display_name": "C#", "color": "purple" },
+    { "key": "lang_py", "display_name": "Python", "color": "green" }
+  ],
+  "projects": [
+    {
+      "id": "proj_2887c787-249c-415f-bb0a-6345f568fa4a",
+      "category_id": "cat_0b661c36-8717-4a67-9d0a-f836a7dd42b4",
+      "name": "IPv4 Party",
+      "url": "https://ipv4.party",
+      "source_url": "https://github.com/ipv4party",
+      "description": "A war of attrition, fought by exerting control over as many IP addresses as possible!",
+      "tags": "lang_ts",
+      "image_url": null,
+      "hidden": 0
+    },
+    {
+      "id": "proj_afc02984-4b09-4462-b1b8-b3d9a626c0e1",
+      "category_id": "cat_0b661c36-8717-4a67-9d0a-f836a7dd42b4",
+      "name": "Zen",
+      "url": "https://zen.kio.dev",
+      "source_url": "https://github.com/kiosion/zen",
+      "description": "A simple irc-style chat app.",
+      "tags": "state_archived,lang_ts,lang_js",
+      "image_url": "zen.png",
+      "hidden": 0
+    },
+    {
+      "id": "proj_9cfee5e2-d4b3-4b6b-8991-ba7eee405a16",
+      "category_id": "cat_af00f784-7427-4295-a674-33446f01fc7d",
+      "name": "SimpleChat",
+      "url": null,
+      "source_url": "https://github.com/isovel/simple-chat",
+      "description": "A simple, easy to configure chat plugin.",
+      "tags": "lang_java",
+      "image_url": "java_512px.png",
+      "hidden": 0
+    },
+    {
+      "id": "proj_9af18d0a-708c-4ef4-ad2a-1e2c252dd5a1",
+      "category_id": "cat_f63d4210-ffa4-409e-8d70-74a2a7060de7",
+      "name": "Roles",
+      "url": null,
+      "source_url": "https://github.com/isovel/rolemenubot",
+      "description": null,
+      "tags": "lang_js",
+      "image_url": "roles_128px.png",
+      "hidden": 0
+    },
+    {
+      "id": "proj_92cb1a43-1ae2-4612-9e5f-8b2f9e861ec6",
+      "category_id": "cat_f63d4210-ffa4-409e-8d70-74a2a7060de7",
+      "name": "xkcdbot",
+      "url": null,
+      "source_url": "https://github.com/isovel/xkcdbot",
+      "description": null,
+      "tags": "lang_js",
+      "image_url": "xkcd_128px.png",
+      "hidden": 0
+    },
+    {
+      "id": "proj_9914c889-f7c5-49c1-9337-49245cbcdaea",
+      "category_id": "cat_3e014eca-700e-4ebb-b2a7-bb5ddc39eb58",
+      "name": "Discord Experiments",
+      "url": null,
+      "source_url": "https://github.com/isovel/DiscordExperiments",
+      "description": "Enables developer options in the Discord client.",
+      "tags": "state_archived,lang_ts",
+      "image_url": "discordexperiments.svg",
+      "hidden": 0
+    },
+    {
+      "id": "proj_afe1a510-35e0-4911-b4eb-568ca372e949",
+      "category_id": "cat_3e014eca-700e-4ebb-b2a7-bb5ddc39eb58",
+      "name": "Lockdown",
+      "url": null,
+      "source_url": "https://github.com/isovel/Lockdown",
+      "description": "Locks the discord client after a certain amount of time and requires a passcode to unlock it.",
+      "tags": "state_archived,lang_ts",
+      "image_url": "lockdown.svg",
+      "hidden": 0
+    },
+    {
+      "id": "proj_8c37aa69-563a-4954-9214-105b6120c788",
+      "category_id": "cat_3e014eca-700e-4ebb-b2a7-bb5ddc39eb58",
+      "name": "Spotify Anti-Pause",
+      "url": null,
+      "source_url": "https://github.com/isovel/SpotifyAntiPause",
+      "description": "Stops Spotify from pausing your music if you're talking for more than 30 seconds or if you're streaming the Spotify app.",
+      "tags": "state_archived,lang_ts",
+      "image_url": null,
+      "hidden": 0
+    },
+    {
+      "id": "proj_eec9403d-e768-4130-8745-a621bb25b568",
+      "category_id": "cat_3e014eca-700e-4ebb-b2a7-bb5ddc39eb58",
+      "name": "Server Features",
+      "url": null,
+      "source_url": "https://github.com/isovel/ServerFeatures",
+      "description": "Adds a context menu option that shows you and allows you to modify a guild's current (cached) features.",
+      "tags": "state_archived,lang_ts",
+      "image_url": "serverfeatures.svg",
+      "hidden": 0
+    },
+    {
+      "id": "proj_96acf3a0-4154-4490-b309-1df830c120fa",
+      "category_id": "cat_3e014eca-700e-4ebb-b2a7-bb5ddc39eb58",
+      "name": "LoafLib",
+      "url": null,
+      "source_url": "https://github.com/isovel/LoafLib",
+      "description": "A small lib for some of my plugins.",
+      "tags": "state_archived,lang_ts",
+      "image_url": "loaflib.svg",
+      "hidden": 0
+    }
+  ]
+}
