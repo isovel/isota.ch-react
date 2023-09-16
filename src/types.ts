@@ -22,12 +22,23 @@ export type RawProjectCategory = {
   hidden: number
 }
 
+export type RawProjectTag = {
+  key: string
+  display_name: string
+  color: string
+}
+
+export type ProjectTag = {
+  displayName: string
+  color: string
+}
+
 export type Project = {
   name: string
   link?: string
   source?: string
   description?: string
-  tags?: string[]
+  tags?: ProjectTag[]
   image?: string
 }
 

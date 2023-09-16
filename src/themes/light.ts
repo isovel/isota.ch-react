@@ -1,12 +1,29 @@
-import { gray, grayA, iris, red } from '@radix-ui/colors'
+import {
+  amber,
+  blue,
+  brown,
+  gray,
+  grayA,
+  green,
+  iris,
+  purple,
+  red,
+  yellow,
+} from '@radix-ui/colors'
 import { Theme } from 'themes'
 
 export const lightTheme: Theme = {
   colors: {
+    ...amber,
+    ...blue,
+    ...brown,
     ...gray,
     ...grayA,
+    ...green,
     ...iris,
+    ...purple,
     ...red,
+    ...yellow,
     background: gray.gray1,
     backgroundFloating: grayA.grayA2,
     text: gray.gray12,

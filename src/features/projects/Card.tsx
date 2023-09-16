@@ -1,12 +1,16 @@
+import { Tag } from 'features/projects/ProjectsPage'
 import { CSSProperties } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
+import { Colors } from 'themes'
+
+const getTagColor = (tag: Tag): Colors => Colors[tag.color]
 
 const Card = (props: {
   image?: string
   title: string
   description?: string
   href?: string
-  tags?: string[]
+  tags?: Tag[]
   style: CSSProperties
 }) => {
   const linkProps = props.href
@@ -14,39 +18,43 @@ const Card = (props: {
     : {}
   return (
     <Container {...linkProps} style={props.style}>
-      {props.image && <Image src={props.image} />}
+      {props.image && <CardImage src={props.image} />}
       <CardTextContainer>
         <CardTitle>{props.title}</CardTitle>
         {props.description && <CardText>{props.description}</CardText>}
       </CardTextContainer>
-      <Tags>
-        {props.tags && props.tags.map((tag, idx) => <Tag key={idx}>{tag}</Tag>)}
-      </Tags>
+      <CardTags>
+        {props.tags &&
+          props.tags.map((tag, idx) => (
+            <CardTag key={idx} $color={getTagColor(tag)}>
+              {tag.displayName}
+            </CardTag>
+          ))}
+      </CardTags>
     </Container>
   )
 }
 
-const _slideIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`
-
-const Tag = styled.span`
+const CardTag = styled.span<{ $color?: Colors }>`
   display: flex;
   align-items: center;
   justify-content: center;
   height: fit-content;
   padding: 0.25em 0.6em;
-  background: ${(props) => props.theme.colors.iris1};
-  border: 1px solid ${(props) => props.theme.colors.iris6};
+  background: ${(props) =>
+    props.$color
+      ? props.theme.colors[`${props.$color}1`]
+      : props.theme.colors.iris1};
+  border: 1px solid
+    ${(props) =>
+      props.$color
+        ? props.theme.colors[`${props.$color}6`]
+        : props.theme.colors.iris6};
   border-radius: 9999px;
-  color: ${(props) => props.theme.colors.iris9};
+  color: ${(props) =>
+    props.$color
+      ? props.theme.colors[`${props.$color}9`]
+      : props.theme.colors.iris9};
   font-size: 0.8em;
   white-space: nowrap;
   user-select: none;
@@ -56,7 +64,7 @@ const Tag = styled.span`
   }
 `
 
-const Tags = styled.div`
+const CardTags = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5em;
@@ -64,7 +72,7 @@ const Tags = styled.div`
   margin-left: auto;
 `
 
-const Image = styled.div<{ src: string }>`
+const CardImage = styled.div<{ src: string }>`
   background-image: url(${(props: { src: string }) => props.src});
   background-size: cover;
   background-position: center;
@@ -101,7 +109,6 @@ const Container = styled.div`
   gap: 1em;
   padding: 1em;
   transform: scale(0.98);
-  opacity: 1;
   background-color: ${(props) => props.theme.colors.backgroundFloating};
   border: 1px solid ${(props) => props.theme.colors.border};
   border-radius: 8px;

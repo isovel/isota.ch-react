@@ -14,6 +14,18 @@ export type Theme = {
   gradients: Record<string, string>
 }
 
+export enum Colors {
+  Amber = 'amber',
+  Blue = 'blue',
+  Brown = 'brown',
+  Gray = 'gray',
+  Green = 'green',
+  Iris = 'iris',
+  Purple = 'purple',
+  Red = 'red',
+  Yellow = 'yellow',
+}
+
 export const themes = {
   dark: darkTheme,
   light: lightTheme,

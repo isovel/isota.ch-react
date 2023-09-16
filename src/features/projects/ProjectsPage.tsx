@@ -1,17 +1,24 @@
 import styled from 'styled-components'
+import { Colors } from 'themes'
 import Accordian from './Accordian'
 import Card from './Card'
 
-type Project = {
+export type Tag = {
+  key: string
+  displayName: string
+  color: keyof typeof Colors
+}
+
+export type Project = {
   name: string
   link?: string
   source?: string
   description?: string
-  tags?: string[]
+  tags?: Tag[]
   image?: string
 }
 
-type ProjectCategory = {
+export type ProjectCategory = {
   label: string
   items: Project[]
   itemPropertyDefaults: Partial<Project>
@@ -40,7 +47,7 @@ const ProjectsPage = () => {
                       ? `https://isota.ch/${project.image}`
                       : 'favicon.png'
                   }
-                  tags={project.tags ? project.tags : undefined}
+                  tags={project.tags}
                   style={{
                     animationDelay: `${pIdx * 50}ms`,
                   }}
@@ -64,24 +71,23 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2em;
-  width: 80%;
+  width: 60%;
+
+  @media only screen and (max-width: 1024px) {
+    gap: 1em;
+    width: 90%;
+  }
 `
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
   margin: 0 20%;
   width: 100%;
   height: 100%;
   padding: 0 0 3em 0;
   overflow: hidden scroll;
-
-  @media only screen and (max-width: 1024px) {
-    gap: 1em;
-    width: 90%;
-  }
 `
 
 export default ProjectsPage

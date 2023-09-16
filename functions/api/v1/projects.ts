@@ -2,16 +2,19 @@ import type {
   Env,
   Project,
   ProjectCategory,
+  ProjectTag,
   RawProject,
   RawProjectCategory,
+  RawProjectTag,
 } from '../../../src/types'
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const { DB } = context.env
 
   const category_stmt = DB.prepare(
-    `SELECT * FROM project_categories WHERE hidden = 0`,
+    `SELECT * FROM project_categories WHERE hidden = 0`
   )
+  const tag_stmt = DB.prepare(`SELECT * FROM project_tags`)
   const project_stmt = DB.prepare(`SELECT * FROM projects WHERE hidden = 0`)
 
   const categories: ProjectCategory[] = []
@@ -20,6 +23,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     // Execute the database queries
     const raw_categories = (await category_stmt.all())
       .results as RawProjectCategory[]
+    const raw_tags = (await tag_stmt.all()).results as RawProjectTag[]
     const raw_projects = (await project_stmt.all()).results as RawProject[]
 
     // Remap raw projects to a more usable format
@@ -29,7 +33,17 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         link: raw_project.url ?? undefined,
         source: raw_project.source_url ?? undefined,
         description: raw_project.description ?? undefined,
-        tags: raw_project.tags?.split(',') ?? undefined,
+        tags:
+          raw_project.tags
+            ?.split(',')
+            .map((k) => {
+              const tag = raw_tags.find((t) => t.key === k) as RawProjectTag
+              return {
+                displayName: tag.display_name,
+                color: tag.color,
+              } as ProjectTag
+            })
+            .filter((t) => t) ?? undefined,
         image: raw_project.image_url ?? undefined,
       }
 
@@ -47,7 +61,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 
       // Filter projects by category
       const category_projects = projects.filter(
-        (_, i) => raw_projects[i].category_id === raw_category.id,
+        (_, i) => raw_projects[i].category_id === raw_category.id
       )
 
       // Add projects to category
@@ -60,9 +74,10 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     return Response.json(
       {
         categories: [],
+        // @ts-expect-error - any database error will have a cause
         error: `${error?.cause?.message}`,
       },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
