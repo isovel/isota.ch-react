@@ -60,10 +60,10 @@ const ReloadButton = styled.button`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1rem;
 
   h1 {
-    font-size: 3em;
+    font-size: 3rem;
     font-weight: 600;
     color: rgba(255, 100, 100, 1);
     text-shadow: 0 0 5px rgba(255, 100, 100, 0.5);

@@ -103,15 +103,15 @@ const cursorAnimation = keyframes`
 
 const Cursor = styled.span`
   margin-left: 1px;
-  padding-right: calc(0.5em - 1px);
+  padding-right: calc(0.5rem - 1px);
   opacity: 0;
   border-left: 1px solid ${(props) => props.theme.colors.textLight};
   animation: ${cursorAnimation} 1s infinite;
-  height: 1.2em;
+  height: 1.2rem;
 `
 
 const CLIHeader = styled.h1`
-  text-indent: -1em;
+  text-indent: -1rem;
 `
 
 const CLIContainer = styled.div`
@@ -130,7 +130,7 @@ const CLILineContainer = styled.div<{ $color?: string }>`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin: 0.2em 0;
+  margin: 0.2rem 0;
   color: ${(props) => props.$color || props.theme.colors.text};
   white-space: pre-wrap;
 `
@@ -140,6 +140,6 @@ const CLIUserText = styled.span`
 
   &:after {
     content: ':~$';
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
   }
 `

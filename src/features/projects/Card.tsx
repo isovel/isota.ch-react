@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, SVGProps } from 'react'
 import styled from 'styled-components'
 import { Colors } from 'themes'
 import { ProjectTag } from 'types'
@@ -15,30 +15,52 @@ const Card = (props: {
     ? { as: 'a' as never, href: props.href, target: '_blank', rel: 'noopener' }
     : {}
   return (
-    <Container {...linkProps} style={props.style}>
-      {props.image && <CardImage src={props.image} />}
-      <CardTextContainer>
-        <CardTitle>{props.title}</CardTitle>
-        {props.description && <CardText>{props.description}</CardText>}
-      </CardTextContainer>
-      <CardTags>
-        {props.tags &&
-          props.tags.map((tag, idx) => (
-            <CardTag key={idx} $color={tag.color as Colors}>
-              {tag.displayName}
-            </CardTag>
-          ))}
-      </CardTags>
-    </Container>
+    <CardContainerContainer>
+      <Indicator />
+      <CardContainer {...linkProps} style={props.style}>
+        {props.image && <CardImage src={props.image} />}
+        <CardTextContainer>
+          <CardTitle>{props.title}</CardTitle>
+          {props.description && <CardText>{props.description}</CardText>}
+        </CardTextContainer>
+        <CardTags>
+          {props.tags &&
+            props.tags.map((tag, idx) => (
+              <CardTag key={idx} $color={tag.color as Colors}>
+                {tag.displayName}
+              </CardTag>
+            ))}
+        </CardTags>
+      </CardContainer>
+    </CardContainerContainer>
   )
 }
+
+const Indicator = (props: SVGProps<SVGSVGElement>) => (
+  <IndicatorSVG viewBox="0 0 24 94" {...props}>
+    <path d="M 22 48 A 12 12 0 0 1 10 36" />
+  </IndicatorSVG>
+)
+
+const IndicatorSVG = styled.svg`
+  flex: 0 0 auto;
+  margin-left: 1rem;
+  width: 24px;
+  height: -webkit-fill-available;
+  pointer-events: none;
+  stroke: ${(props) => props.theme.colors.iris3};
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+`
 
 const CardTag = styled.span<{ $color?: Colors }>`
   display: flex;
   align-items: center;
   justify-content: center;
   height: fit-content;
-  padding: 0.25em 0.6em;
+  padding: 0.25rem 0.6rem;
   background: ${(props) =>
     props.$color
       ? props.theme.colors[`${props.$color}1`]
@@ -53,7 +75,7 @@ const CardTag = styled.span<{ $color?: Colors }>`
     props.$color
       ? props.theme.colors[`${props.$color}9`]
       : props.theme.colors.iris9};
-  font-size: 0.8em;
+  font-size: 0.8rem;
   white-space: nowrap;
   user-select: none;
 
@@ -65,7 +87,7 @@ const CardTag = styled.span<{ $color?: Colors }>`
 const CardTags = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: 0.5rem;
   height: 100%;
   margin-left: auto;
 `
@@ -92,33 +114,45 @@ const CardTitle = styled.h3`
 const CardTextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75em;
+  gap: 0.75rem;
 
   * {
     margin: 0;
   }
 `
 
-const Container = styled.div`
+const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1em;
-  padding: 1em;
-  transform: scale(0.98);
+  flex: 1 1 auto;
+  gap: 1rem;
+  padding: 1rem;
+  transform: scale(1);
   background-color: ${(props) => props.theme.colors.backgroundFloating};
   border: 1px solid ${(props) => props.theme.colors.border};
   border-radius: 8px;
   text-decoration: none;
   overflow: hidden;
 
-  transition: transform 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
 
-  &:hover {
-    transform: scale(1);
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.02);
     text-decoration: none;
   }
+`
+
+const CardContainerContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
 `
 
 export default Card

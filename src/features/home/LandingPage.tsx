@@ -48,7 +48,7 @@ const BlurbList = styled.ul`
   margin: 0;
 
   li {
-    margin: 1em 0;
+    margin: 1rem 0;
   }
 `
 
@@ -64,7 +64,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  padding: 0 0 2em 0;
+  padding: 0 0 2rem 0;
   border-radius: 8px;
   backdrop-filter: blur(5px);
 

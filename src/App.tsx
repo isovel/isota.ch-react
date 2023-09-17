@@ -59,6 +59,10 @@ const GlobalStyles = createGlobalStyle`
     font-size: 14px;
   }
 
+  :focus-visible {
+    outline: 2px auto ${(props) => props.theme.colors.primary};
+  }
+
   html, body {
     margin: 0;
     padding: 0;
@@ -66,15 +70,20 @@ const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.colors.text};
   }
 
-  button {
-    background-color: ${(props) => props.theme.colors.gray2};
+  button,
+  input,
+  select,
+  textarea {
+    background-color: ${(props) => props.theme.colors.gray3};
 
-    &:hover {
-      background-color: ${(props) => props.theme.colors.primary};
+    &:hover:not(:disabled):not(:focus-visible) {
+      border-color: ${(props) => props.theme.colors.primary};
     }
-
-    &:active {
-      background-color: ${(props) => props.theme.colors.primary};
+    
+    &:focus-visible {
+      border-color: ${(props) => props.theme.colors.primary};
+      outline: 4px auto ${(props) => props.theme.colors.primary};
+      outline-offset: 2px;
     }
   }
 
@@ -82,9 +91,17 @@ const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.colors.primary};
     text-decoration: none;
 
+    transition: border-color 150ms ease-in-out, outline-offset 150ms ease-in-out;
+
     &:hover {
       color: ${(props) => props.theme.colors.primary};
       text-decoration: underline;
+    }
+
+    &:focus-visible {
+      border-color: ${(props) => props.theme.colors.primary};
+      outline: 2px auto ${(props) => props.theme.colors.primary};
+      outline-offset: 2px;
     }
   }
 `

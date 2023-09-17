@@ -78,8 +78,8 @@ const Footer = styled.div`
 const VerticalDivider = styled.div`
   display: inline-block;
   width: 1px;
-  height: 1.6em;
-  margin: 0 0.65em;
+  height: 1.6rem;
+  margin: 0 0.65rem;
   background-color: ${(props) => props.theme.colors.textLight};
 `
 

@@ -56,19 +56,19 @@ const ProjectsPage = () => {
 }
 
 const Title = styled.h1`
-  font-size: 3em;
+  font-size: 3rem;
   font-weight: 600;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 `
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1rem;
   width: 60%;
 
   @media only screen and (max-width: 1024px) {
-    gap: 1em;
+    gap: 1rem;
     width: 90%;
   }
 `
@@ -80,7 +80,7 @@ const Container = styled.div`
   margin: 0 20%;
   width: 100%;
   height: 100%;
-  padding: 0 0 3em 0;
+  padding: 0 0 3rem 0;
   overflow: hidden scroll;
 `
 
