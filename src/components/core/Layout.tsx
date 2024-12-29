@@ -23,7 +23,7 @@ const Layout = () => {
       </Section>
       {showFooter && (
         <Footer>
-          &copy; 2022-{new Date().getFullYear()} isota.ch
+          &copy; 2020-{new Date().getFullYear()} isota.ch
           <VerticalDivider />
           {location.pathname === '/' ? (
             <FooterLink to={'/projects'}>projects</FooterLink>
