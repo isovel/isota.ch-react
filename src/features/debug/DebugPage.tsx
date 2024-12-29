@@ -1,5 +1,5 @@
 import useTitle from 'hooks/useTitle'
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 
 const DebugPage = () => {
   useTitle('isota.ch | debug')

@@ -44,7 +44,7 @@ const Layout = () => {
   )
 }
 
-const Section = styled.div<{ $showFooter: boolean }>`
+const Section = styled.div<{ $showFooter?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +83,7 @@ const VerticalDivider = styled.div`
   background-color: ${(props) => props.theme.colors.textLight};
 `
 
-const FooterLink = styled(Link)<{ $debug: boolean }>`
+const FooterLink = styled(Link)<{ $debug?: boolean }>`
   color: ${(props) =>
     props.$debug ? props.theme.colors.red10 : props.theme.colors.textLight};
 
