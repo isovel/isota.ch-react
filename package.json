@@ -4,9 +4,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "export NO_D1_WARNING=true && wrangler pages dev -- rsbuild dev",
+    "dev": "rsbuild dev",
     "build": "rsbuild build",
-    "preview": "wrangler preview -- rsbuild preview",
+    "preview": "rsbuild preview",
+    "dev:functions": "wrangler pages dev .",
     "populate-db": "ts-node --esm ./database/populate.ts"
   },
   "dependencies": {
@@ -21,7 +22,6 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.16.0",
     "styled-components": "^6.1.13",
-    "typescript": "^5.7.2",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
@@ -29,6 +29,7 @@
     "@rsbuild/core": "^1.1.13",
     "@rsbuild/plugin-eslint": "^1.1.0",
     "@rsbuild/plugin-react": "^1.1.0",
+    "@rsbuild/plugin-styled-components": "^1.1.0",
     "@rsbuild/plugin-svgr": "^1.0.6",
     "@types/better-sqlite3": "^7.6.12",
     "@types/node": "^22.10.2",
@@ -45,6 +46,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
+    "typescript": "^5.7.2",
     "wrangler": "^3.99.0"
   }
 }
